@@ -25,8 +25,6 @@ d3.json("samples.json").then(function(data){
 
     function buildDashboard(){
 
-        // d3.event.preventDefault();
-
         var ID = dropdown.property("value");
         console.log(ID);
 
@@ -74,7 +72,7 @@ d3.json("samples.json").then(function(data){
         }];
 
         var bar_layout = {
-            title: `Top 10 OTUs found in ${ID}`
+            title: `Top 10 OTUs found in Subject ID ${ID}`
         };
 
         Plotly.newPlot("bar", bar_data, bar_layout);
@@ -93,9 +91,7 @@ d3.json("samples.json").then(function(data){
             }    
         }];
 
-        var bubble_layout = {};
-
-        Plotly.newPlot("bubble", bubble_data, bubble_layout);
+        Plotly.newPlot("bubble", bubble_data);
 
         // gauge
 
@@ -108,10 +104,11 @@ d3.json("samples.json").then(function(data){
             gauge: { axis: { range: [null, 9] } }
         }];
 
-        var gauge_layout = {};
+        var gauge_layout = {
+            title: "Belly Button Washing Frequency<br> Scrubs per week"
+        };
 
-        Plotly.newPlot("gauge", gauge_data, gauge_layout);
-        
+        Plotly.newPlot("gauge", gauge_data, gauge_layout) 
 
     };
 });
